@@ -86,8 +86,9 @@ if ! [ -f ~/.wipter-configured ]; then
     xdotool type "$WIPTER_PASSWORD"
     sleep 3
     xdotool key Return
+    sleep 5
+    xdotool search --name Wipter | tail -n1 | xargs xdotool windowclose
 
     touch ~/.wipter-configured
 fi
-
 fg %/root/wipter/wipter-app
