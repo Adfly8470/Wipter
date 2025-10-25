@@ -64,30 +64,26 @@ echo "Starting Wipter....."
 cd /root/wipter/
 /root/wipter/wipter-app &
 
-if ! [ -f ~/.wipter-configured ]; then
-    # Wait for the wipter window to be available
-    while [[ "$(xdotool search --name Wipter| wc -l)" -lt 3 ]]; do
-        sleep 10
-    done
+# Wait for the wipter window to be available
+while [[ "$(xdotool search --name Wipter| wc -l)" -lt 3 ]]; do
+    sleep 10
+done
 
-    # Handle wipter login
-    xdotool search --name Wipter | tail -n1 | xargs xdotool windowfocus
-    sleep 5
-    xdotool key Tab
-    sleep 3
-    xdotool key Tab
-    sleep 3
-    xdotool key Tab
-    sleep 3
-    xdotool type "$WIPTER_EMAIL"
-    sleep 3
-    xdotool key Tab
-    sleep 3
-    xdotool type "$WIPTER_PASSWORD"
-    sleep 3
-    xdotool key Return
-
-    touch ~/.wipter-configured
-fi
+# Handle wipter login
+xdotool search --name Wipter | tail -n1 | xargs xdotool windowfocus
+sleep 5
+xdotool key Tab
+sleep 3
+xdotool key Tab
+sleep 3
+xdotool key Tab
+sleep 3
+xdotool type "$WIPTER_EMAIL"
+sleep 3
+xdotool key Tab
+sleep 3
+xdotool type "$WIPTER_PASSWORD"
+sleep 3
+xdotool key Return
 
 fg %/root/wipter/wipter-app
